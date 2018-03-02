@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+
+ext {
+    PUBLISH_GROUP_ID = 'com.afollestad'
+    PUBLISH_ARTIFACT_ID = 'material-camera'
+    PUBLISH_VERSION = '0.4.5'
+    PUBLISH_VERSION_CODE = 26
+    SUPPORT_LIB_VERSION = '25.2.0'
+    VIDEO_PLAYER_VERSION = '0.3.0'
+    MD_VERSION = '0.9.1.0'
+    TARGET_SDK = 25
+    BUILD_TOOLS = "24.0.3"
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionName PUBLISH_VERSION
+        vectorDrawables.useSupportLibrary = true
+    }
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+    }
+}
+
+repositories {
+    jcenter()
+    maven { url "https://dl.bintray.com/drummer-aidan/maven" }
+}
+
+dependencies {
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIB_VERSION"
+    compile "com.afollestad:easyvideoplayer:$VIDEO_PLAYER_VERSION"
+    compile "com.afollestad.material-dialogs:core:$MD_VERSION"
+}
+
