@@ -39,6 +39,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Request permission to save videos in external storage
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_RQ);
         }
+
+        findViewById(R.id.launchCamera1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File saveDir = null;
+
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    // Only use external storage directory if permission is granted, otherwise cache directory is used by default
+                    saveDir = new File(Environment.getExternalStorageDirectory(), "MaterialCamera");
+                    saveDir.mkdirs();
+                }
+
+
+                MaterialCamera materialCamera = new MaterialCamera(MainActivity.this)
+                        .saveDir(saveDir)
+                        .showPortraitWarning(false)
+                        .allowRetry(true)
+                        .defaultToFrontFacing(false)
+                        // .allowRetry(true)
+                        .autoSubmit(false)
+                        .holdToRecord(true)
+                        .labelConfirm(R.string.mcam_use_video);
+                materialCamera.start(CAMERA_RQ);
+            }
+        });
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -71,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .defaultToFrontFacing(true)
                 .allowRetry(true)
                 .autoSubmit(false)
+                .holdToRecord(true)
                 .labelConfirm(R.string.mcam_use_video);
 
         if (view.getId() == R.id.launchCameraStillshot)

@@ -20,7 +20,15 @@
             android:gravity="center"
             android:text="@string/demo_from_activity"
             tools:ignore="UnusedAttribute" />
-
+        <Button
+            android:id="@+id/launchCamera1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margin_less"
+            android:padding="@dimen/mcam_content_inset"
+            android:text="Hold to record"
+            android:theme="@style/ColoredButton" />
         <Button
             android:id="@+id/launchCamera"
             android:layout_width="match_parent"
