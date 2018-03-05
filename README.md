@@ -1,5 +1,5 @@
 # Material Camera
-
+Forked from https://github.com/afollestad/material-camera , https://github.com/dstik/material-camera
 Android's video recording APIs are very difficult to figure out, especially since a lot of manufacturers
 like to mount their camera sensors upside down or sideways. This library is a result of lots of research
 and experimentation to get video recording to work universally.
