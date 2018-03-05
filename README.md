@@ -1,5 +1,5 @@
 # Material Camera
-
+Forked from https://github.com/afollestad/material-camera , https://github.com/dstik/material-camera
 Android's video recording APIs are very difficult to figure out, especially since a lot of manufacturers
 like to mount their camera sensors upside down or sideways. This library is a result of lots of research
 and experimentation to get video recording to work universally.
@@ -33,20 +33,21 @@ Add Bintray to your repositories, for some reason this specific library doesn't 
 even though all of my other libraries do.
 
 ```gradle
-repositories {
-    jcenter()
-    maven { url "https://dl.bintray.com/drummer-aidan/maven" }
-}
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 ```
 
 Add this in your module's `build.gradle` file:
 
 ```gradle
-dependencies {
-    // ... other dependencies
+	dependencies {
+	        compile 'com.github.jitarun:material-camera-master:0.4.6'
+	}
 
-    compile 'com.afollestad:material-camera:0.4.4'
-}
 ```
 
 ---
