@@ -59,6 +59,7 @@ abstract class BaseCameraFragment extends Fragment implements CameraUriInterface
     protected Handler mPositionHandler;
     protected MediaRecorder mMediaRecorder;
     private int mIconTextColor;
+    protected TextView mTextHold;
 
     protected static void LOG(Object context, String message) {
         Log.d(context instanceof Class<?> ? ((Class<?>) context).getSimpleName() :
@@ -114,6 +115,7 @@ abstract class BaseCameraFragment extends Fragment implements CameraUriInterface
         mButtonStillshot = (ImageButton) view.findViewById(R.id.stillshot);
         mRecordDuration = (TextView) view.findViewById(R.id.recordDuration);
         mButtonFacing = (ImageButton) view.findViewById(R.id.facing);
+        mTextHold = (TextView) view.findViewById(R.id.texthold);
         if (mInterface.shouldHideCameraFacing() || CameraUtil.isChromium()) {
             mButtonFacing.setVisibility(View.GONE);
         } else {
@@ -127,8 +129,11 @@ abstract class BaseCameraFragment extends Fragment implements CameraUriInterface
         if (mInterface.holdToRecord()) {
             mButtonVideo.setOnLongClickListener(this);
             mButtonVideo.setOnTouchListener(this);
+            mTextHold.setVisibility(View.VISIBLE);
+            mTextHold.setText(getString(R.string.mcam_hold));
         } else {
             mButtonVideo.setOnClickListener(this);
+            mTextHold.setVisibility(View.GONE);
         }
         mButtonStillshot.setOnClickListener(this);
         mButtonFacing.setOnClickListener(this);
@@ -348,6 +353,12 @@ abstract class BaseCameraFragment extends Fragment implements CameraUriInterface
     }
 
     public boolean startRecordingVideo() {
+        if (mInterface.holdToRecord()) {
+            mTextHold.setVisibility(View.VISIBLE);
+            mTextHold.setText(getString(R.string.mcam_release));
+        } else {
+            mTextHold.setVisibility(View.GONE);
+        }
         if (mInterface != null && mInterface.hasLengthLimit() && !mInterface.countdownImmediately()) {
             // Countdown wasn't started in onResume, start it now
             if (mInterface.getRecordingStart() == -1)
@@ -364,6 +375,12 @@ abstract class BaseCameraFragment extends Fragment implements CameraUriInterface
 
     public void stopRecordingVideo(boolean reachedZero) {
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        if (mInterface.holdToRecord()) {
+            mTextHold.setVisibility(View.VISIBLE);
+            mTextHold.setText(getString(R.string.mcam_hold));
+        } else {
+            mTextHold.setVisibility(View.GONE);
+        }
     }
 
     @Override

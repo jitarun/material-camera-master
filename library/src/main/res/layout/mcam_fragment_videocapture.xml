@@ -52,17 +52,34 @@
             tools:ignore="ContentDescription"
             tools:src="@drawable/mcam_action_flash" />
 
-        <ImageButton
-            android:id="@+id/video"
-            android:layout_width="@dimen/mcam_action_icon_size"
-            android:layout_height="@dimen/mcam_action_icon_size"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:gravity="center"
             android:layout_gravity="center"
-            android:background="@drawable/mcam_circle_selector"
-            android:padding="@dimen/mcam_content_inset_less"
-            android:scaleType="fitXY"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/mcam_action_capture" />
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/video"
+                android:layout_width="@dimen/mcam_action_icon_size"
+                android:layout_height="@dimen/mcam_action_icon_size"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@drawable/mcam_circle_selector"
+                android:padding="@dimen/mcam_content_inset_less"
+                android:scaleType="fitXY"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/mcam_action_capture" />
+
+            <TextView
+                android:id="@+id/texthold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/mcam_hold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/mcam_content_inset_less1" />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/stillshot"
