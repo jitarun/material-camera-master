@@ -45,7 +45,7 @@ Add this in your module's `build.gradle` file:
 
 ```gradle
 	dependencies {
-	       compile 'com.github.jitarun:material-camera-master:0.4.7'
+	        compile 'com.github.jitarun:material-camera-master:0.4.8'
 	}
 
 ```
